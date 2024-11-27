@@ -20,13 +20,13 @@ El "Sistema de Gestión de Biblioteca" es un sistema para manejar las operacione
  
 ### Configuración y Ejecución
 1. Clonar el repositorio
-> git clone https://github.com/xlrandylx/sistema-biblioteca.git
+> git clone https://github.com/pr1vi3t/biblioteca-api-proyecto-final
 > cd sistema-biblioteca
 
 2. Instalar dependencias
 > npm install
 
 ## Integrantes del Equipo
-- Rodrigo Choque Jose: Lider Tecnico
-- Felix Flores Savio: Desarrollador Backend
+- Felix Flores Savio: Lider Tecnico
+- Rodrigo Choque Jose: Desarrollador Backend
 - Miranda Quiñonez Roberto: Desarrollador Frontend
