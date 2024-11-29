@@ -14,13 +14,13 @@ El "Sistema de Gestión de Biblioteca" es un sistema para manejar las operacione
 
 ## Entorno de Desarrollo
 ### Requisitos Previos
-. Tener instalado Node.js  
-. Tener instalado MySQL 
-. Tener instalado Git
+- Tener instalado Node.js  
+- Tener instalado MySQL 
+- Tener instalado Git
  
 ### Configuración y Ejecución
 1. Clonar el repositorio
-> git clone https://github.com/pr1vi3t/biblioteca-api-proyecto-final
+> git clone https://github.com/pr1vi3t/biblioteca-api-proyecto-final\
 > cd sistema-biblioteca
 
 2. Instalar dependencias
