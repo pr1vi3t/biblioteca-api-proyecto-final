@@ -28,5 +28,5 @@ El "Sistema de Gestión de Biblioteca" es un sistema para manejar las operacione
 
 ## Integrantes del Equipo
 - Felix Flores Savio: Lider Tecnico
-- Rodrigo Choque Jose: Desarrollador Backend
-- Miranda Quiñonez Roberto: Desarrollador Frontend
+- Rodrigo Choque Jose: Desarrollador 
+- Miranda Quiñonez Roberto: Desarrollador 
