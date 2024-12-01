@@ -1,0 +1,14 @@
+{
+  "name": "biblioteca-api-proyecto-final",
+  "version": "1.0.0",
+  "description": "El \"Sistema de Gestión de Biblioteca\" es un sistema para manejar las operaciones principales de una biblioteca. Este sistema permite al personal de la biblioteca gestionar libros, usuarios, préstamos y devoluciones de manera eficiente.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build && node dist/index",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
