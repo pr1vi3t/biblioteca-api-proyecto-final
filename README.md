@@ -44,6 +44,5 @@ El **Sistema de Gestión de Biblioteca** está desarrollado para optimizar las o
 
 ### Integrantes del Equipo
 - Felix Flores Savio: Lider Tecnico
-- Rodrigo Choque Jose: Desarrollador Backend
-- Miranda Quiñonez Roberto: Desarrollador Frontend
-
+- Rodrigo Choque Jose: Desarrollador 
+- Miranda Quiñonez Roberto: Desarrollador 
