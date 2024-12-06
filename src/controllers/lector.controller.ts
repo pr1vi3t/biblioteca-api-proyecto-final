@@ -1,32 +1,32 @@
 import {Request, Response} from 'express';
-import * as proveedorService from '../services/lector.service';
+import * as lectorService from '../services/lector.service';
 
 export const insertarLector = async (req: Request, res: Response) => {
-    const proveedor = req.body;
-    const response = proveedorService.insertarLector(proveedor);
+    const lector = req.body;
+    const response = lectorService.insertarLector(lector);
     res.json(response);
 };
 
-export const listarLectores = async (req: Request, res: Response) => {
-    const response = proveedorService.listarLectores();
+export const listarLector = async (req: Request, res: Response) => {
+    const response = lectorService.listarLector();
     res.json(response);
 };
 
 export const obtenerLector = async (req: Request, res: Response) => {
     const { idLector } = req.params;
-    const response = proveedorService.obtenerLector(Number(idLector));
+    const response = lectorService.obtenerLector(Number(idLector));
     res.json(response);
 };
 
 export const actualizarLector = async (req: Request, res: Response) => {
     const { idLector } = req.params;
-    const proveedor = req.body;
-    const response = proveedorService.actualizarLector(Number(idLector), proveedor);
+    const lector = req.body;
+    const response = lectorService.actualizarLector(Number(idLector), lector);
     res.json(response);
 };
 
 export const darBajaLector = async (req: Request, res: Response) => {
     const { idLector } = req.params;
-    const response = proveedorService.darBajaLector(Number(idLector));
+    const response = lectorService.darBajaLector(Number(idLector));
     res.json(response);
 };
