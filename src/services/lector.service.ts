@@ -1,5 +1,12 @@
-export const insertarLector = (data: any) => {
-    return {accion: 'insertarLector'};
+import { AppDataSource } from "../config/db.config";
+import { Lector } from "../entities/lector";
+
+const repository = AppDataSource.getRepository(Lector);
+
+export const insertarLector = async (data: Partial<Lector>): Promise<Lector> => {
+    console.log('insertarLector::service',data)
+    const newLector: Lector = await repository.save(data);
+    return await repository.findOne({where: { idLector: newLector.idLector }});  
 };
 
 export const listarLector = () => {

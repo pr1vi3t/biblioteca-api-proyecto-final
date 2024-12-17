@@ -1,10 +1,18 @@
 import {Request, Response} from 'express';
 import * as lectorService from '../services/lector.service';
+import { Lector } from '../entities/lector';
+import { BaseResponse } from '../shared/base.response';
 
 export const insertarLector = async (req: Request, res: Response) => {
-    const lector = req.body;
-    const response = lectorService.insertarLector(lector);
-    res.json(response);
+    try {
+        console.log('insertarLector')
+        console.log('req.body',req.body)
+        const lector: Partial<Lector> = req.body;
+        const newProveedor: Lector = await lectorService.insertarLector(lector)
+        res.json(BaseResponse.success(newProveedor));
+    } catch (error) {
+        res.status(500).json(BaseResponse.error(error.message));    
+    }
 };
 
 export const listarLector = async (req: Request, res: Response) => {
