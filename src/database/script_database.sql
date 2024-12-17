@@ -111,6 +111,7 @@ CREATE TABLE ejemplar (
 CREATE TABLE prestamo (
   id_prestamo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   id_ejemplar INT NOT NULL,
+  id_lector INT NOT NULL,
   id_usuario INT NOT NULL,
   id_estado_prestamo INT NOT NULL,
   fecha_prestamo DATE NOT NULL,
@@ -121,6 +122,7 @@ CREATE TABLE prestamo (
   estado_auditoria INT NOT NULL DEFAULT 1,
   fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (id_ejemplar) REFERENCES ejemplar(id_ejemplar),
+  FOREIGN KEY (id_lector) REFERENCES lector(id_lector),
   FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
   FOREIGN KEY (id_estado_prestamo) REFERENCES estado_prestamo(id_estado_prestamo)
 );
