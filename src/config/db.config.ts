@@ -1,6 +1,7 @@
 import { DataSource } from "typeorm";
 import { DB_DATABASE, DB_HOST, DB_PASSWORD, DB_PORT, DB_TYPE, DB_USERNAME } from "../shared/constants";
 import { Lector } from "../entities/lector";
+import { Autor } from "../entities/autor";
 
 export const AppDataSource = new DataSource({
     type: DB_TYPE as any,
@@ -9,5 +10,5 @@ export const AppDataSource = new DataSource({
     username: DB_USERNAME,
     password: DB_PASSWORD,
     database: DB_DATABASE,
-    entities: [Lector]
+    entities: [Lector,Autor]
 });
