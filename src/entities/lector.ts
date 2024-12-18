@@ -22,7 +22,7 @@ export class Lector {
   celular: string;
  
   @Column({ name: 'estado_auditoria'})
-  estadoAuditoria: number;
+  estadoAuditoria: string;
  
   @CreateDateColumn({ name: 'fecha_creacion' })
   fechaCreacion: Date;

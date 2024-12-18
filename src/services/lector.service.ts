@@ -1,5 +1,6 @@
 import { AppDataSource } from "../config/db.config";
 import { Lector } from "../entities/lector";
+import { EstadoAuditoria } from "../enums/estado-auditoria";
 
 const repository = AppDataSource.getRepository(Lector);
 
@@ -9,18 +10,19 @@ export const insertarLector = async (data: Partial<Lector>): Promise<Lector> => 
     return await repository.findOne({where: { idLector: newLector.idLector }});  
 };
 
-export const listarLector = () => {
-    return {accion: 'listarLector'};
+export const listarLector = async () => {
+    return await repository.find({where: { estadoAuditoria: EstadoAuditoria.ACTIVO }})
 };
 
-export const obtenerLector = (idLector: number) => {
-    return {accion: `obtenerLector:${idLector}`};
+export const obtenerLector = async (idLector: number) => {
+    return await repository.findOne({where: { estadoAuditoria: EstadoAuditoria.ACTIVO, idLector}})    
 };
 
-export const actualizarLector = (idLector: number, data: any) => {
-    return {accion: `actualizarLector:${idLector}`};
+export const actualizarLector = async (idLector: number, data: Partial<Lector>): Promise<Lector> => {
+    await repository.update(idLector, data);
+        return obtenerLector(idLector);
 };
 
-export const darBajaLector = (idLector: number) => {
-    return {accion: `darBajaLector:${idLector}`};
+export const darBajaLector = async (idLector: number): Promise<void> => {
+    await repository.update(idLector, { estadoAuditoria: EstadoAuditoria.INACTIVO});
 };
