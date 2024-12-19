@@ -10,11 +10,11 @@ export const insertarLector = async (data: Partial<Lector>): Promise<Lector> => 
     return await repository.findOne({where: { idLector: newLector.idLector }});  
 };
 
-export const listarLector = async () => {
+export const listarLector = async ():Promise<Lector[]> => {
     return await repository.find({where: { estadoAuditoria: EstadoAuditoria.ACTIVO }})
 };
 
-export const obtenerLector = async (idLector: number) => {
+export const obtenerLector = async (idLector: number):Promise<Lector> => {
     return await repository.findOne({where: { estadoAuditoria: EstadoAuditoria.ACTIVO, idLector}})    
 };
 

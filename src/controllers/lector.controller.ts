@@ -10,7 +10,7 @@ export const insertarLector = async (req: Request, res: Response) => {
         console.log('req.body',req.body)
         const lector: Partial<Lector> = req.body;
         const newProveedor: Lector = await lectorService.insertarLector(lector)
-        res.json(BaseResponse.success(newProveedor));
+        res.json(BaseResponse.success(newProveedor, Message.INSERTADO_OK));
     } catch (error) {
         res.status(500).json(BaseResponse.error(error.message));        
     }

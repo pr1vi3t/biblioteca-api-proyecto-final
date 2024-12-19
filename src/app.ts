@@ -3,6 +3,8 @@ import morgan from 'morgan';
 import lectorRouter from './routes/lector.route'
 import editorialRouter from './routes/editorial.route'
 import autorRouter from './routes/autor.route'
+import rolRouter from './routes/rol.route'
+import usuarioRouter from './routes/usuario.route'
 import { AppDataSource } from './config/db.config';
 
 const app: Application = express();
@@ -14,6 +16,8 @@ app.use(morgan('dev'));
 app.use('/api/v1/lectores',lectorRouter);
 app.use('/api/v1/editoriales',editorialRouter);
 app.use('/api/v1/autores',autorRouter);
+app.use('/api/v1/roles',rolRouter);
+app.use('/api/v1/usuarios',usuarioRouter);
 
 export const startServer = async () => {
     try {
