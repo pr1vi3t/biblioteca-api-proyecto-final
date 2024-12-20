@@ -6,6 +6,7 @@ import autorRouter from './routes/autor.route'
 import rolRouter from './routes/rol.route'
 import categoriaRouter from './routes/categoria.route'
 import usuarioRouter from './routes/usuario.route'
+import libroRouter from './routes/libro.route'
 import { AppDataSource } from './config/db.config';
 
 const app: Application = express();
@@ -19,6 +20,7 @@ app.use('/api/v1/autores',autorRouter);
 app.use('/api/v1/roles',rolRouter);
 app.use('/api/v1/usuarios',usuarioRouter);
 app.use('/api/v1/categorias',categoriaRouter);
+app.use('/api/v1/libros',libroRouter);
 
 export const startServer = async () => {
     try {
