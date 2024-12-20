@@ -16,9 +16,9 @@ export const insertarRol = async (req: Request, res: Response) => {
     }
 };
 
-export const listarRoles = async (req: Request, res: Response) => {
+export const listarRol = async (req: Request, res: Response) => {
     try {
-        const roles: Rol[] = await rolService.listarRoles();
+        const roles: Rol[] = await rolService.listarRol();
         res.json(BaseResponse.success(roles));
     } catch (error) {
         console.error(error);

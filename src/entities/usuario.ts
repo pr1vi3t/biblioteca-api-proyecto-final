@@ -33,7 +33,7 @@ export class Usuario {
   rol: Rol;
  
   @Column({ name: 'estado_auditoria'})
-  estadoAuditoria: string;
+  estadoAuditoria: number;
  
   @CreateDateColumn({ name: 'fecha_creacion' })
   fechaCreacion: Date;
