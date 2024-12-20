@@ -9,7 +9,7 @@ export const insertarUsuario = async (data: Partial<Usuario>):Promise<Usuario> =
     return await repository.findOne({where: {idUsuario: newUsuario.idUsuario, rol: {estadoAuditoria: EstadoAuditoria.ACTIVO}}})
 }
 
-export const listarUsuarios = async (): Promise<Usuario[]>=>{
+export const listarUsuario = async (): Promise<Usuario[]>=>{
     return await repository.find({where: 
         { estadoAuditoria: EstadoAuditoria.ACTIVO, rol: {estadoAuditoria: EstadoAuditoria.ACTIVO}}, 
         relations: ['rol']

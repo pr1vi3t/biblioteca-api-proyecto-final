@@ -7,8 +7,8 @@ import { Message } from '../enums/messages';
 export const insertarUsuario = async (req: Request, res: Response)=>{
     try {
         console.log('insertarUsuario');
+        console.log('req.body', req.body)
         const usuario: Partial<Usuario> = req.body;
-        console.log(usuario);
         const newUsuario: Usuario = await usuarioService.insertarUsuario(usuario);
         if(!newUsuario){
             res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
@@ -21,10 +21,9 @@ export const insertarUsuario = async (req: Request, res: Response)=>{
     }
 }
 
-export const listarUsuarios = async (req: Request, res: Response)=>{
+export const listarUsuario = async (req: Request, res: Response)=>{
     try {
-        console.log('listarUsuarios');
-        const usuarios: Usuario[] = await usuarioService.listarUsuarios();
+        const usuarios: Usuario[] = await usuarioService.listarUsuario();
         res.json(BaseResponse.success(usuarios));
     } catch (error) {
         console.error(error);

@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
  
 @Entity('lector')
 export class Lector {
@@ -22,7 +22,7 @@ export class Lector {
   celular: string;
  
   @Column({ name: 'estado_auditoria'})
-  estadoAuditoria: string;
+  estadoAuditoria: number;
  
   @CreateDateColumn({ name: 'fecha_creacion' })
   fechaCreacion: Date;

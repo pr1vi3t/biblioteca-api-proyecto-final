@@ -5,7 +5,6 @@ import { EstadoAuditoria } from "../enums/estado-auditoria";
 const repository = AppDataSource.getRepository(Lector);
 
 export const insertarLector = async (data: Partial<Lector>): Promise<Lector> => {
-    console.log('insertarLector::service',data)
     const newLector: Lector = await repository.save(data);
     return await repository.findOne({where: { idLector: newLector.idLector }});  
 };
@@ -20,7 +19,7 @@ export const obtenerLector = async (idLector: number):Promise<Lector> => {
 
 export const actualizarLector = async (idLector: number, data: Partial<Lector>): Promise<Lector> => {
     await repository.update(idLector, data);
-        return obtenerLector(idLector);
+    return obtenerLector(idLector);
 };
 
 export const darBajaLector = async (idLector: number): Promise<void> => {
