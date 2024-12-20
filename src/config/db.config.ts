@@ -6,6 +6,7 @@ import { Rol } from "../entities/rol";
 import { Usuario } from "../entities/usuario";
 import { Editorial } from "../entities/editorial";
 import { Categoria } from "../entities/categoria";
+import { Libro } from "../entities/libro";
 
 export const AppDataSource = new DataSource({
     type: DB_TYPE as any,
@@ -14,5 +15,5 @@ export const AppDataSource = new DataSource({
     username: DB_USERNAME,
     password: DB_PASSWORD,
     database: DB_DATABASE,
-    entities: [Lector,Autor,Rol,Usuario,Editorial,Categoria]
+    entities: [Lector,Autor,Rol,Usuario,Editorial,Categoria,Libro]
 });

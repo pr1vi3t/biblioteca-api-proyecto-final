@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Libro } from './libro';
  
 @Entity('editorial')
 export class Editorial {
@@ -20,4 +21,7 @@ export class Editorial {
  
   @CreateDateColumn({ name: 'fecha_creacion' })
   fechaCreacion: Date;
+
+  @OneToMany(()=>Libro, (libro)=>libro.editorial)
+  editoriales: Editorial[];
 }
