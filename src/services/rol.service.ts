@@ -1,8 +1,10 @@
 import { AppDataSource } from "../config/db.config";
 import { Rol } from "../entities/rol";
+import { Usuario } from "../entities/usuario";
 import { EstadoAuditoria } from "../enums/estado-auditoria";
 
 const repository = AppDataSource.getRepository(Rol);
+const usuarioRepository = AppDataSource.getRepository(Usuario);
 
 export const insertarRol = async (data: Partial<Rol>): Promise<Rol> => {
     const newRol: Rol = await repository.save(data);
@@ -23,5 +25,12 @@ export const actualizarRol = async (idRol: number, data: Partial<Rol>): Promise<
 };
 
 export const darBajaRol = async (idRol: number): Promise<void> => {
-    await repository.update(idRol, { estadoAuditoria: EstadoAuditoria.INACTIVO});
+    await repository.update(idRol, { estadoAuditoria: EstadoAuditoria.INACTIVO });
+};
+
+export const verificarRelaciones = async (idRol: number): Promise<boolean> => {
+    const usuariosAsociados = await usuarioRepository.find({
+        where: { rol: { idRol }, estadoAuditoria: EstadoAuditoria.ACTIVO },
+    });
+    return usuariosAsociados.length > 0; 
 };

@@ -1,8 +1,10 @@
 import { AppDataSource } from "../config/db.config";
 import { Editorial } from "../entities/editorial";
+import { Libro } from "../entities/libro";
 import { EstadoAuditoria } from "../enums/estado-auditoria";
 
 const repository = AppDataSource.getRepository(Editorial);
+const libroRepository = AppDataSource.getRepository(Libro);
 
 export const insertarEditorial = async (data: Partial<Editorial>): Promise<Editorial> => {
     const newEditorial: Editorial = await repository.save(data);
@@ -24,4 +26,11 @@ export const actualizarEditorial = async (idEditorial: number, data: Partial<Edi
 
 export const darBajaEditorial = async (idEditorial: number): Promise<void> => {
     await repository.update(idEditorial, { estadoAuditoria: EstadoAuditoria.INACTIVO});
+};
+
+export const verificarRelaciones = async (idEditorial: number): Promise<boolean> => {
+    const librosAsociados = await libroRepository.find({
+        where: { editorial: { idEditorial }, estadoAuditoria: EstadoAuditoria.ACTIVO },
+    });
+    return librosAsociados.length > 0; 
 };

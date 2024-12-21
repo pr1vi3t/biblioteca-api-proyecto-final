@@ -4,5 +4,5 @@ export enum Message{
     ELIMINADO_OK = 'Se ha eliminado correctamente',
 
     NOT_FOUND = 'Recurso no ha sido encontrado',
-    ELIMINADO_ERROR = 'La entidad se encuentra relacionada'
+    ELIMINADO_ERROR = 'No se puede eliminar el registro porque está relacionado con otros elementos'
 }

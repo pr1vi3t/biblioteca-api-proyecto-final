@@ -6,7 +6,9 @@ const repository = AppDataSource.getRepository(Libro);
 
 export const insertarLibro = async (data: Partial<Libro>): Promise<Libro> => {
     const newLibro : Libro = await repository.save(data);
-    return await repository.findOne({where: {idLibro: newLibro.idLibro}})
+    return await repository.findOne({where: {idLibro: newLibro.idLibro, editorial: {estadoAuditoria: EstadoAuditoria.ACTIVO}, 
+        autor: {estadoAuditoria: EstadoAuditoria.ACTIVO}, categoria: {estadoAuditoria: EstadoAuditoria.ACTIVO}}})
+    
 }
 
 export const listarLibro = async (): Promise<Libro[]>=>{

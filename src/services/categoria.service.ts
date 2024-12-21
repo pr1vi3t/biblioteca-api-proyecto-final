@@ -1,8 +1,10 @@
 import { AppDataSource } from "../config/db.config";
 import { Categoria } from "../entities/categoria";
+import { Libro } from "../entities/libro";
 import { EstadoAuditoria } from "../enums/estado-auditoria";
 
 const repository = AppDataSource.getRepository(Categoria);
+const libroRepository = AppDataSource.getRepository(Libro);
 
 export const insertarCategoria = async (data: Partial<Categoria>): Promise<Categoria> => {
     const newCategoria: Categoria = await repository.save(data);
@@ -24,4 +26,11 @@ export const actualizarCategoria = async (idCategoria: number, data: Partial<Cat
 
 export const darBajaCategoria = async (idCategoria: number): Promise<void> => {
     await repository.update(idCategoria, { estadoAuditoria: EstadoAuditoria.INACTIVO});
+};
+
+export const verificarRelaciones = async (idCategoria: number): Promise<boolean> => {
+    const librosAsociados = await libroRepository.find({
+        where: { categoria: { idCategoria }, estadoAuditoria: EstadoAuditoria.ACTIVO },
+    });
+    return librosAsociados.length > 0; 
 };
