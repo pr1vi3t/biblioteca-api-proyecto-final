@@ -65,13 +65,6 @@ export const darBajaEditorial = async (req: Request, res: Response) => {
             res.status(404).json(BaseResponse.error(Message.NOT_FOUND, 404));
             return;
         }
-
-        const hayLibrosAsociados = await editorialService.verificarRelaciones(Number(idEditorial));
-        if (hayLibrosAsociados) {
-            res.status(409).json(BaseResponse.error(Message.ELIMINADO_ERROR, 409));
-            return;
-        }
-
         await editorialService.darBajaEditorial(Number(idEditorial));
         res.json(BaseResponse.success(null, Message.ELIMINADO_OK));
     } catch (error) {

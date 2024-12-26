@@ -3,6 +3,5 @@ export enum Message{
     ACTUALIZADO_OK = 'Se ha actualizado correctamente',
     ELIMINADO_OK = 'Se ha eliminado correctamente',
 
-    NOT_FOUND = 'Recurso no ha sido encontrado',
-    ELIMINADO_ERROR = 'No se puede eliminar el registro porque está relacionado con otros elementos'
+    NOT_FOUND = 'Recurso no ha sido encontrado'
 }

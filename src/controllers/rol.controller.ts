@@ -60,18 +60,10 @@ export const actualizarRol = async (req: Request, res: Response) => {
 export const darBajaRol = async (req: Request, res: Response) => {
     try {
         const { idRol } = req.params;
-
         if (!(await rolService.obtenerRol(Number(idRol)))) {
             res.status(404).json(BaseResponse.error(Message.NOT_FOUND, 404));
             return;
         }
-
-        const hayUsuariosAsociados = await rolService.verificarRelaciones(Number(idRol));
-        if (hayUsuariosAsociados) {
-            res.status(409).json(BaseResponse.error(Message.ELIMINADO_ERROR, 409));
-            return;
-        }
-
         await rolService.darBajaRol(Number(idRol));
         res.json(BaseResponse.success(null, Message.ELIMINADO_OK));
     } catch (error) {

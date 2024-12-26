@@ -60,18 +60,10 @@ export const actualizarAutor = async (req: Request, res: Response) => {
 export const darBajaAutor = async (req: Request, res: Response) => {
     try {
         const { idAutor } = req.params;
-
         if (!(await autorService.obtenerAutor(Number(idAutor)))) {
             res.status(404).json(BaseResponse.error(Message.NOT_FOUND, 404))
             return;
         }
-
-        const hayLibrosAsociados = await autorService.verificarRelaciones(Number(idAutor));
-        if (hayLibrosAsociados) {
-            res.status(409).json(BaseResponse.error(Message.ELIMINADO_ERROR, 409));
-            return;
-        }
-
         await autorService.darBajaAutor(Number(idAutor));
         res.json(BaseResponse.success(null, Message.ELIMINADO_OK));
     } catch (error) {
