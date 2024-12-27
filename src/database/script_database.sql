@@ -116,7 +116,7 @@ CREATE TABLE prestamo (
   id_estado_prestamo INT NOT NULL,
   fecha_prestamo DATE NOT NULL,
   fecha_devolucion DATE,
-  fecha_confirmacion DATE,
+  fecha_devolucion_real DATE,
   estado_entregado VARCHAR(100),
   estado_recibido VARCHAR(100),
   estado_auditoria INT NOT NULL DEFAULT 1,
