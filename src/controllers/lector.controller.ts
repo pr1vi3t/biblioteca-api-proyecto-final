@@ -3,11 +3,17 @@ import * as lectorService from '../services/lector.service';
 import { Lector } from '../entities/lector';
 import { BaseResponse } from '../shared/base.response';
 import { Message } from '../enums/messages';
+import { actualizarLectorSchema, insertarLectorSchema } from '../validators/lector.schema';
 
 export const insertarLector = async (req: Request, res: Response) => {
     try {
         console.log('insertarLector')
         console.log('req.body',req.body)
+        const {error} = insertarLectorSchema.validate(req.body);
+        if (error) {
+            res.status(400).json(BaseResponse.error(error.message,400));
+            return;
+        }
         const lector: Partial<Lector> = req.body;
         const newLector: Lector = await lectorService.insertarLector(lector)
         res.json(BaseResponse.success(newLector, Message.INSERTADO_OK));
@@ -44,6 +50,11 @@ export const obtenerLector = async (req: Request, res: Response) => {
 export const actualizarLector = async (req: Request, res: Response) => {
     try {
         const { idLector } = req.params;
+        const {error} = actualizarLectorSchema.validate(req.body);
+        if (error) {
+            res.status(400).json(BaseResponse.error(error.message,400));
+            return;
+        }
         const lector: Partial<Lector> = req.body;
         if(!(await lectorService.obtenerLector(Number(idLector)))){
             res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
