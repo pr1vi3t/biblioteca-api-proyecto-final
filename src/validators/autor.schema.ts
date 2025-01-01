@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-export const insertarLectorSchema = Joi.object({
+export const insertarAutorSchema = Joi.object({
     nombres: Joi.string()
                     .min(3)
                     .max(100)
@@ -13,19 +13,21 @@ export const insertarLectorSchema = Joi.object({
                         .min(3)
                         .max(50)
                         .required(),
-    correo: Joi.string()
+    fechaNacimiento: Joi.date()
+                .less('now')
+                .optional(),
+    nacionalidad: Joi.string()
+                .min(3)
+                .max(50)
+                .optional(),
+    correoElectronico: Joi.string()
             .min(9)
             .max(50)
             .email()
-            .optional(),
-    celular: Joi.string()
-                .min(9)
-                .max(9)
-                .optional()
-                .pattern(new RegExp('^[0-9]{9,9}$'))
+            .optional()
 });
 
-export const actualizarLectorSchema = Joi.object({
+export const actualizarAutorSchema = Joi.object({
     nombres: Joi.string()
                     .min(3)
                     .max(100)
@@ -38,14 +40,16 @@ export const actualizarLectorSchema = Joi.object({
                         .min(3)
                         .max(50)
                         .optional(),
-    correo: Joi.string()
+    fechaNacimiento: Joi.date()
+                .less('now')
+                .optional(),
+    nacionalidad: Joi.string()
+                .min(3)
+                .max(50)
+                .optional(),
+    correoElectronico: Joi.string()
             .min(9)
             .max(50)
             .email()
-            .optional(),
-    celular: Joi.string()
-                .min(9)
-                .max(9)
-                .optional()
-                .pattern(new RegExp('^[0-9]{9,9}$'))
+            .optional()
 });
