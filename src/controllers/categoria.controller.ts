@@ -3,11 +3,17 @@ import * as categoriaService from '../services/categoria.service';
 import { Categoria } from '../entities/categoria';
 import { BaseResponse } from '../shared/base.response';
 import { Message } from '../enums/messages';
+import { actualizarCategoriaSchema, insertarCategoriaSchema } from '../validators/categoria.schema';
 
 export const insertarCategoria = async (req: Request, res: Response) => {
     try {
         console.log('insertarCategoria')
         console.log('req.body', req.body)
+        const { error } = insertarCategoriaSchema.validate(req.body);
+        if (error) {
+            res.status(400).json(BaseResponse.error(error.message, 400));
+            return;
+        }
         const categoria: Partial<Categoria> = req.body;
         const newCategoria: Categoria = await categoriaService.insertarCategoria(categoria)
         res.json(BaseResponse.success(newCategoria, Message.INSERTADO_OK));
@@ -44,6 +50,11 @@ export const obtenerCategoria = async (req: Request, res: Response) => {
 export const actualizarCategoria = async (req: Request, res: Response) => {
     try {
         const { idCategoria } = req.params;
+        const { error } = actualizarCategoriaSchema.validate(req.body);
+        if (error) {
+            res.status(400).json(BaseResponse.error(error.message, 400));
+            return;
+        }
         const categoria: Partial<Categoria> = req.body;
         if (!(await categoriaService.obtenerCategoria(Number(idCategoria)))) {
             res.status(404).json(BaseResponse.error(Message.NOT_FOUND, 404));

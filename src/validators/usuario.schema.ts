@@ -3,14 +3,14 @@ import Joi from 'joi';
 export const insertarUsuarioSchema = Joi.object({
     nombres: Joi.string()
                     .min(3)
-                    .max(200)
+                    .max(100)
                     .required(),
     apellidoPaterno: Joi.string()
-                        .min(2)
+                        .min(3)
                         .max(50)
                         .required(),
     apellidoMaterno: Joi.string()
-                        .min(1)
+                        .min(3)
                         .max(50)
                         .required(),
     username: Joi.string()
@@ -19,10 +19,10 @@ export const insertarUsuarioSchema = Joi.object({
                 .required()
                 .pattern(new RegExp('^[a-zA-Z0-9]{3,20}$')),
     password: Joi.string()
-                .min(5)
+                .min(6)
                 .max(20)
                 .required()
-                .pattern(new RegExp('^[a-zA-Z0-9]{5,20}$')),
+                .pattern(new RegExp('^.{6,20}$')),     
     correo: Joi.string()
             .min(9)
             .max(50)
@@ -35,25 +35,22 @@ export const insertarUsuarioSchema = Joi.object({
                 .pattern(new RegExp('^[0-9]{9,9}$')),
     rol: Joi.object({
         idRol: Joi.number()
-                .min(1)
-                .max(10)
+                .integer()
                 .required()
-    })
-            
-    
+    }) 
 });
 
 export const actualizarUsuarioSchema = Joi.object({
     nombres: Joi.string()
                     .min(3)
-                    .max(200)
+                    .max(100)
                     .optional(),
     apellidoPaterno: Joi.string()
-                        .min(2)
+                        .min(3)
                         .max(50)
                         .optional(),
     apellidoMaterno: Joi.string()
-                        .min(1)
+                        .min(3)
                         .max(50)
                         .optional(),
     username: Joi.string()
@@ -62,10 +59,10 @@ export const actualizarUsuarioSchema = Joi.object({
                 .optional()
                 .pattern(new RegExp('^[a-zA-Z0-9]{3,20}$')),
     password: Joi.string()
-                .min(5)
+                .min(6)
                 .max(20)
                 .optional()
-                .pattern(new RegExp('^[a-zA-Z0-9]{5,20}$')),
+                .pattern(new RegExp('^.{6,20}$')),
     correo: Joi.string()
             .min(9)
             .max(50)
@@ -78,8 +75,7 @@ export const actualizarUsuarioSchema = Joi.object({
                 .pattern(new RegExp('^[0-9]{9,9}$')),
     rol: Joi.object({
         idRol: Joi.number()
-                .min(1)
-                .max(10)
+                .integer()        
                 .optional()
     })
 });
