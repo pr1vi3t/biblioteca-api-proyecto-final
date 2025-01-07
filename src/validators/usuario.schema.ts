@@ -37,7 +37,7 @@ export const insertarUsuarioSchema = Joi.object({
         idRol: Joi.number()
                 .integer()
                 .required()
-    }) 
+    }).required()
 });
 
 export const actualizarUsuarioSchema = Joi.object({
@@ -77,5 +77,5 @@ export const actualizarUsuarioSchema = Joi.object({
         idRol: Joi.number()
                 .integer()        
                 .optional()
-    })
+    }).required()
 });

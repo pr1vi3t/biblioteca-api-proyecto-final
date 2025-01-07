@@ -3,11 +3,17 @@ import { BaseResponse } from "../shared/base.response";
 import * as libroService from '../services/libro.service';
 import { Libro } from "../entities/libro";
 import { Message } from '../enums/messages';
+import { actualizarLibroSchema, insertarLibroSchema } from '../validators/libro.schema';
+import { json } from 'stream/consumers';
 
 export const insertarLibro = async (req: Request, res: Response) => {
     try {
         console.log('insertarLibro');
-        console.log('req.body', req.body);
+        const { error } = insertarLibroSchema.validate(req.body);
+        if (error) {
+            res.status(400).json(BaseResponse.error(error.message,400));
+            return;
+        }
         const libro : Partial<Libro> = req.body;
         const newLibro : Libro = await libroService.insertarLibro(libro);
         if (!newLibro) {
@@ -49,6 +55,11 @@ export const obtenerLibro = async (req: Request, res: Response)=>{
 export const actualizarLibro = async (req: Request, res: Response)=>{
     try {
         const { idLibro } = req.params;
+        const { error } = actualizarLibroSchema.validate(req.body);
+        if (error) {
+            res.status(400).json(BaseResponse.error(error.message,400));
+            return;
+        }
         const libro: Partial<Libro> = req.body;
         if(!(await libroService.obtenerLibro(Number(idLibro)))){
             res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));

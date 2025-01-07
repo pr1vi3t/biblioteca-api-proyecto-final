@@ -3,15 +3,21 @@ import * as rolService from '../services/rol.service';
 import { BaseResponse } from '../shared/base.response';
 import { Message } from '../enums/messages';
 import { Rol } from '../entities/rol';
+import { actualizarRolSchema, insertarRolSchema } from '../validators/rol.schema';
 
 export const insertarRol = async (req: Request, res: Response) => {
     try {
         console.log('insertarRol')
-        console.log('req.body',req.body)
+        const { error } = insertarRolSchema.validate(req.body);
+        if (error) {
+            res.status(400).json(BaseResponse.error(error.message,400));
+            return;
+        }
         const rol: Partial<Rol> = req.body;
         const newRol: Rol = await rolService.insertarRol(rol)
         res.json(BaseResponse.success(newRol, Message.INSERTADO_OK));
     } catch (error) {
+        console.error(error);
         res.status(500).json(BaseResponse.error(error.message));        
     }
 };
@@ -44,6 +50,11 @@ export const obtenerRol = async (req: Request, res: Response) => {
 export const actualizarRol = async (req: Request, res: Response) => {
     try {
         const { idRol } = req.params;
+        const { error } = actualizarRolSchema.validate(req.body);
+        if (error) {
+            res.status(400).json(BaseResponse.error(error.message,400));
+            return;
+        }
         const rol: Partial<Rol> = req.body;
         if(!(await rolService.obtenerRol(Number(idRol)))){
             res.status(404).json(BaseResponse.error(Message.NOT_FOUND,404));
