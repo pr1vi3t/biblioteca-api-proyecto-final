@@ -3,7 +3,7 @@ CREATE DATABASE bd_biblioteca_grupo5;
 USE bd_biblioteca_grupo5;
 
 -- Tabla Rol
-CREATE TABLE rol (
+CREATE TABLE roles (
   id_rol INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   descripcion VARCHAR(50) NOT NULL,
   estado_auditoria INT NOT NULL DEFAULT 1,
@@ -11,7 +11,7 @@ CREATE TABLE rol (
 );
 
 -- Tabla Lector
-CREATE TABLE lector (
+CREATE TABLE lectores (
   id_lector INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   nombres VARCHAR(100) NOT NULL,
   apellido_paterno VARCHAR(50) NOT NULL,
@@ -23,7 +23,7 @@ CREATE TABLE lector (
 );
 
 -- Tabla Usuario
-CREATE TABLE usuario (
+CREATE TABLE usuarios (
   id_usuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   nombres VARCHAR(100) NOT NULL,
   apellido_paterno VARCHAR(50) NOT NULL,
@@ -35,11 +35,11 @@ CREATE TABLE usuario (
   id_rol INT NOT NULL,
   estado_auditoria INT NOT NULL DEFAULT 1,
   fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (id_rol) REFERENCES rol(id_rol)
+  FOREIGN KEY (id_rol) REFERENCES roles(id_rol)
 );
 
 -- Tabla Estado_Prestamo
-CREATE TABLE estado_prestamo (
+CREATE TABLE estados_prestamo (
   id_estado_prestamo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   descripcion VARCHAR(50) NOT NULL,
   estado_auditoria INT NOT NULL DEFAULT 1,
@@ -47,7 +47,7 @@ CREATE TABLE estado_prestamo (
 );
 
 -- Tabla Editorial
-CREATE TABLE editorial (
+CREATE TABLE editoriales (
   id_editorial INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   nombre VARCHAR(100) NOT NULL,
   pais_origen VARCHAR(20),
@@ -57,7 +57,7 @@ CREATE TABLE editorial (
 );
 
 -- Tabla Autor
-CREATE TABLE autor (
+CREATE TABLE autores (
   id_autor INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   nombres VARCHAR(100) NOT NULL,
   apellido_paterno VARCHAR(50) NOT NULL,
@@ -70,7 +70,7 @@ CREATE TABLE autor (
 );
 
 -- Tabla Categoria
-CREATE TABLE categoria (
+CREATE TABLE categorias (
   id_categoria INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   descripcion VARCHAR(100) NOT NULL,
   estado_auditoria INT NOT NULL DEFAULT 1,
@@ -78,9 +78,9 @@ CREATE TABLE categoria (
 );
 
 -- Tabla Libro
-CREATE TABLE libro (
+CREATE TABLE libros (
   id_libro INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  isbn VARCHAR(50) NOT NULL,
+  isbn VARCHAR(13) NOT NULL,
   titulo VARCHAR(200) NOT NULL,
   imagen_url VARCHAR(500),
   edicion VARCHAR(50),
@@ -91,38 +91,38 @@ CREATE TABLE libro (
   idioma VARCHAR(30),
   estado_auditoria INT NOT NULL DEFAULT 1,
   fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (id_editorial) REFERENCES editorial(id_editorial),
-  FOREIGN KEY (id_autor) REFERENCES autor(id_autor),
-  FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
+  FOREIGN KEY (id_editorial) REFERENCES editoriales(id_editorial),
+  FOREIGN KEY (id_autor) REFERENCES autores(id_autor),
+  FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
 );
 
 -- Tabla Ejemplar
-CREATE TABLE ejemplar (
+CREATE TABLE ejemplares (
   id_ejemplar INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   id_libro INT NOT NULL,
   numero INT NOT NULL,
   estado VARCHAR(50) NOT NULL,
   estado_auditoria INT NOT NULL DEFAULT 1,
   fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (id_libro) REFERENCES libro(id_libro)
+  FOREIGN KEY (id_libro) REFERENCES libros(id_libro)
 );
 
 -- Tabla Prestamo
-CREATE TABLE prestamo (
+CREATE TABLE prestamos (
   id_prestamo INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   id_ejemplar INT NOT NULL,
   id_lector INT NOT NULL,
   id_usuario INT NOT NULL,
   id_estado_prestamo INT NOT NULL,
   fecha_prestamo DATE NOT NULL,
-  fecha_devolucion DATE,
+  fecha_devolucion DATE NOT NULL,
   fecha_devolucion_real DATE,
   estado_entregado VARCHAR(100),
   estado_recibido VARCHAR(100),
   estado_auditoria INT NOT NULL DEFAULT 1,
   fecha_creacion DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  FOREIGN KEY (id_ejemplar) REFERENCES ejemplar(id_ejemplar),
-  FOREIGN KEY (id_lector) REFERENCES lector(id_lector),
-  FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
-  FOREIGN KEY (id_estado_prestamo) REFERENCES estado_prestamo(id_estado_prestamo)
+  FOREIGN KEY (id_ejemplar) REFERENCES ejemplares(id_ejemplar),
+  FOREIGN KEY (id_lector) REFERENCES lectores(id_lector),
+  FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
+  FOREIGN KEY (id_estado_prestamo) REFERENCES estados_prestamo(id_estado_prestamo)
 );

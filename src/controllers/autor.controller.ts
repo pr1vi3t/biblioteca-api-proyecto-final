@@ -9,9 +9,9 @@ export const insertarAutor = async (req: Request, res: Response) => {
     try {
         console.log('insertarAutor')
         console.log('req.body', req.body)
-        const {error} = insertarAutorSchema.validate(req.body);
+        const { error } = insertarAutorSchema.validate(req.body);
         if (error) {
-            res.status(400).json(BaseResponse.error(error.message,400));
+            res.status(400).json(BaseResponse.error(error.message, 400));
             return;
         }
         const autor: Partial<Autor> = req.body;
@@ -50,9 +50,9 @@ export const obtenerAutor = async (req: Request, res: Response) => {
 export const actualizarAutor = async (req: Request, res: Response) => {
     try {
         const { idAutor } = req.params;
-        const {error} = actualizarAutorSchema.validate(req.body);
+        const { error } = actualizarAutorSchema.validate(req.body);
         if (error) {
-            res.status(400).json(BaseResponse.error(error.message,400));
+            res.status(400).json(BaseResponse.error(error.message, 400));
             return;
         }
         const autor: Partial<Autor> = req.body;

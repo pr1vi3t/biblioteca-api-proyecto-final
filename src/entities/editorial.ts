@@ -1,7 +1,7 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Libro } from './libro';
  
-@Entity('editorial')
+@Entity('editoriales')
 export class Editorial {
  
   @PrimaryGeneratedColumn({ name: 'id_editorial' })

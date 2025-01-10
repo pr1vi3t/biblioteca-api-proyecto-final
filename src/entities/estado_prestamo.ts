@@ -1,11 +1,11 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { Libro } from './libro';
+import { Prestamo } from './prestamo';
  
-@Entity('categorias')
-export class Categoria {
+@Entity('estados_prestamo')
+export class EstadoPrestamo {
  
-  @PrimaryGeneratedColumn({ name: 'id_categoria' })
-  idCategoria: number;
+  @PrimaryGeneratedColumn({ name: 'id_estado_prestamo' })
+  idEstadoPrestamo: number;
  
   @Column({ name: 'descripcion' })
   descripcion: string;
@@ -16,6 +16,6 @@ export class Categoria {
   @CreateDateColumn({ name: 'fecha_creacion' })
   fechaCreacion: Date;
 
-  @OneToMany(()=>Libro, (libro)=>libro.categoria)
-  cetegorias: Categoria[];
+  @OneToMany(()=>Prestamo, (prestamo)=>prestamo.estadoPrestamo)
+  estadosPrestamo: EstadoPrestamo[];
 }

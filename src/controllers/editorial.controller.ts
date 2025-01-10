@@ -9,9 +9,9 @@ export const insertarEditorial = async (req: Request, res: Response) => {
     try {
         console.log('insertarEditorial')
         console.log('req.body', req.body)
-        const {error} = insertarEditorialSchema.validate(req.body);
+        const { error } = insertarEditorialSchema.validate(req.body);
         if (error) {
-            res.status(400).json(BaseResponse.error(error.message,400));
+            res.status(400).json(BaseResponse.error(error.message, 400));
             return;
         }
         const editorial: Partial<Editorial> = req.body;
@@ -50,9 +50,9 @@ export const obtenerEditorial = async (req: Request, res: Response) => {
 export const actualizarEditorial = async (req: Request, res: Response) => {
     try {
         const { idEditorial } = req.params;
-        const {error} = actualizarEditorialSchema.validate(req.body);
+        const { error } = actualizarEditorialSchema.validate(req.body);
         if (error) {
-            res.status(400).json(BaseResponse.error(error.message,400));
+            res.status(400).json(BaseResponse.error(error.message, 400));
             return;
         }
         const editorial: Partial<Editorial> = req.body;

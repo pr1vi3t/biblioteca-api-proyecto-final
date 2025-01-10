@@ -1,9 +1,10 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Editorial } from "./editorial";
 import { Autor } from "./autor";
 import { Categoria } from "./categoria";
+import { Ejemplar } from "./ejemplar";
 
-@Entity('libro')
+@Entity('libros')
 export class Libro {
 
     @PrimaryGeneratedColumn({ name: 'id_libro' })
@@ -44,4 +45,7 @@ export class Libro {
  
     @CreateDateColumn({ name: 'fecha_creacion' })
     fechaCreacion: Date;
+
+    @OneToMany(()=>Ejemplar, (ejemplar)=>ejemplar.libro)
+      libros: Libro[];
 }

@@ -1,15 +1,15 @@
 import Joi from 'joi';
 
-export const insertarCategoriaSchema = Joi.object({
+export const insertarEstadoPrestamoSchema = Joi.object({
     descripcion: Joi.string()
         .min(3)
-        .max(100)
+        .max(50)
         .required()
 });
 
-export const actualizarCategoriaSchema = Joi.object({
+export const actualizarEstadoPrestamoSchema = Joi.object({
     descripcion: Joi.string()
         .min(3)
-        .max(100)
+        .max(50)
         .optional()
 });
