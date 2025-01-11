@@ -22,7 +22,7 @@ export const insertarLectorSchema = Joi.object({
                 .min(9)
                 .max(9)
                 .optional()
-                .pattern(new RegExp('^[0-9]{9,9}$'))
+                .pattern(new RegExp('^9[0-9]{8}$'))
 });
 
 export const actualizarLectorSchema = Joi.object({
@@ -47,5 +47,5 @@ export const actualizarLectorSchema = Joi.object({
                 .min(9)
                 .max(9)
                 .optional()
-                .pattern(new RegExp('^[0-9]{9,9}$'))
+                .pattern(new RegExp('^9[0-9]{8}$'))
 });

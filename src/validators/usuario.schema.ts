@@ -32,7 +32,7 @@ export const insertarUsuarioSchema = Joi.object({
         .min(9)
         .max(9)
         .optional()
-        .pattern(new RegExp('^[0-9]{9,9}$')),
+        .pattern(new RegExp('^9[0-9]{8}$')),
     rol: Joi.object({
         idRol: Joi.number()
             .integer()
@@ -72,7 +72,7 @@ export const actualizarUsuarioSchema = Joi.object({
         .min(9)
         .max(9)
         .optional()
-        .pattern(new RegExp('^[0-9]{9,9}$')),
+        .pattern(new RegExp('^9[0-9]{8}$')),
     rol: Joi.object({
         idRol: Joi.number()
             .integer()
